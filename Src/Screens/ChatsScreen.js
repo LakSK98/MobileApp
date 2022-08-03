@@ -50,7 +50,7 @@ export default function ChatsScreen({route}) {
   }
 
   useEffect(()=>{
-    fetch(`http://10.0.2.2:8000/api/message/${route.params.chatId}`,{ headers : {Authorization:'Bearer token'}})
+    fetch(`http://10.0.2.2:8000/api/message/${route.params.chatId}`,{ headers : {Authorization:'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZWE1ZThhZmM2Yjg4NjVlMmMwOGFiYiIsImlhdCI6MTY1OTUyNjc5NCwiZXhwIjoxNjYyMTE4Nzk0fQ.8EIE2I7ED27WaKCS8hj8eubDZvMBmGcZClVRFPCKFs0'}})
       .then((res)=>{
         setMessages(modelMessages(res.data));
       })

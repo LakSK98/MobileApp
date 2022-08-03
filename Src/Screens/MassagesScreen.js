@@ -81,7 +81,7 @@ const MessagesScreen = ({navigation}) => {
   // };
 
   useEffect(()=>{
-    fetch('http://10.0.2.2:8000/api/chat', { headers : {Authorization:'Bearer token'}})
+    fetch('http://10.0.2.2:8000/api/chat', { headers : {Authorization:'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZWE1ZThhZmM2Yjg4NjVlMmMwOGFiYiIsImlhdCI6MTY1OTUyNjc5NCwiZXhwIjoxNjYyMTE4Nzk0fQ.8EIE2I7ED27WaKCS8hj8eubDZvMBmGcZClVRFPCKFs0'}})
       .then((res)=>{
         setMessages(modelChats(res.data));
       })
