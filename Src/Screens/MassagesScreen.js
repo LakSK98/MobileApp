@@ -81,7 +81,7 @@ const MessagesScreen = ({navigation}) => {
   // };
 
   const getToken = async()=>{
-    return await fetch(`http://10.0.2.2:8000/api/login/`,{
+    return await fetch(`http://10.0.2.2:8000/api/user/login/`,{
       method:"POST",
       headers:{
         'Content-Type':'application/json'
