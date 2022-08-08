@@ -49,14 +49,30 @@ export default function ChatsScreen({route}) {
     });
   }
 
+  const getToken = async()=>{
+    return await fetch(`http://10.0.2.2:8000/api/login/`,{
+      email:"jokeekak@gmail.com",
+      password:"Lak1234"
+    })
+      .then((res)=>{
+        return res.data.token;
+      })
+      .catch((err)=>{
+        return null;
+      });
+  }
+
   useEffect(()=>{
-    fetch(`http://10.0.2.2:8000/api/message/${route.params.chatId}`,{ headers : {Authorization:'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZWE1ZThhZmM2Yjg4NjVlMmMwOGFiYiIsImlhdCI6MTY1OTUyNjc5NCwiZXhwIjoxNjYyMTE4Nzk0fQ.8EIE2I7ED27WaKCS8hj8eubDZvMBmGcZClVRFPCKFs0'}})
+    const token = getToken();
+    if(token!==null){
+    fetch(`http://10.0.2.2:8000/api/message/${route.params.chatId}`,{ headers : {Authorization:`Bearer ${token}`}})
       .then((res)=>{
         setMessages(modelMessages(res.data));
       })
       .catch((err)=>{
         console.log(err);
       });
+    }
   },[]);
 
   // useEffect(() => {

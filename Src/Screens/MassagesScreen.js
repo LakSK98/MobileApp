@@ -80,14 +80,30 @@ const MessagesScreen = ({navigation}) => {
   //   return false;
   // };
 
+  const getToken = async()=>{
+    return await fetch(`http://10.0.2.2:8000/api/login/`,{
+      email:"jokeekak@gmail.com",
+      password:"Lak1234"
+    })
+      .then((res)=>{
+        return res.data.token;
+      })
+      .catch((err)=>{
+        return null;
+      });
+  }
+
   useEffect(()=>{
-    fetch('http://10.0.2.2:8000/api/chat', { headers : {Authorization:'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZWE1ZThhZmM2Yjg4NjVlMmMwOGFiYiIsImlhdCI6MTY1OTUyNjc5NCwiZXhwIjoxNjYyMTE4Nzk0fQ.8EIE2I7ED27WaKCS8hj8eubDZvMBmGcZClVRFPCKFs0'}})
+    const token = getToken();
+    if(token!==null){
+    fetch('http://10.0.2.2:8000/api/chat', { headers : {Authorization:`Bearer ${token}`}})
       .then((res)=>{
         setMessages(modelChats(res.data));
       })
       .catch((error)=>{
         console.log(error);
       });
+    }
   },[]);
 
   return (
