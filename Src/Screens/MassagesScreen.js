@@ -83,10 +83,13 @@ const MessagesScreen = ({navigation}) => {
   const getToken = async()=>{
     return await fetch(`http://10.0.2.2:8000/api/login/`,{
       method:"POST",
-      body: {
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify({
         email:"jokeekak@gmail.com",
         password:"Lak1234"
-      }
+      })
     })
       .then((res)=>{
         return res.data.token;
